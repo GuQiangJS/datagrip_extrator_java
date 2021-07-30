@@ -5,34 +5,31 @@ DataGrip适用的数据提取器。可以将所需数据导出为Java的ArrayLis
 参考 [Add a custom extractor](https://www.jetbrains.com/help/datagrip/data-extractors.html#creating-any-text-extractor-with)
 
 ## Example
-| TABLE\_NAME | COLUMN\_NAME | ORDINAL\_POSITION | CHARACTER\_MAXIMUM\_LENGTH | CHARACTER\_OCTET\_LENGTH |
-| :--- | :--- | :--- | :--- | :--- |
-| ALL\_PLUGINS | PLUGIN\_NAME | 1 | 64 | 192 |
-| ALL\_PLUGINS | PLUGIN\_VERSION | 2 | 20 | 60 |
-| ALL\_PLUGINS | PLUGIN\_STATUS | 3 | 16 | 48 |
+| NAME | SUBSYSTEM | COUNT | TIME\_ENABLED |
+| :--- | :--- | :--- | :--- |
+| metadata\_table\_reference\_count | metadata | 0 | NULL |
+| lock\_deadlocks | lock | 0 | 2021-07-29 10:43:24 |
+| lock\_timeouts | lock | 0 | 2021-07-29 10:43:24 |
 
 导出后的java代码如下
 
 ```java
-new ArrayList<HashMap<String, Object>>() {{
-    add(new HashMap<String, Object>(5) {{
-        put("TABLE_NAME", "ALL_PLUGINS");
-            put("COLUMN_NAME", "PLUGIN_NAME");
-            put("ORDINAL_POSITION", 1);
-            put("CHARACTER_MAXIMUM_LENGTH", 64);
-            put("CHARACTER_OCTET_LENGTH", 192);}});
-        add(new HashMap<String, Object>(5) {{
-            put("TABLE_NAME", "ALL_PLUGINS");
-            put("COLUMN_NAME", "PLUGIN_VERSION");
-            put("ORDINAL_POSITION", 2);
-            put("CHARACTER_MAXIMUM_LENGTH", 20);
-            put("CHARACTER_OCTET_LENGTH", 60);}});
-        add(new HashMap<String, Object>(5) {{
-            put("TABLE_NAME", "ALL_PLUGINS");
-            put("COLUMN_NAME", "PLUGIN_STATUS");
-            put("ORDINAL_POSITION", 3);
-            put("CHARACTER_MAXIMUM_LENGTH", 16);
-            put("CHARACTER_OCTET_LENGTH", 48);}});
-}};
+        new ArrayList<HashMap<String, Object>>() {{
+            add(new HashMap<String, Object>(4) {{
+                put("NAME", "metadata_table_reference_count");
+                put("SUBSYSTEM", "metadata");
+                put("COUNT", 0);
+                put("TIME_ENABLED", null);}});
+            add(new HashMap<String, Object>(4) {{
+                put("NAME", "lock_deadlocks");
+                put("SUBSYSTEM", "lock");
+                put("COUNT", 0);
+                put("TIME_ENABLED", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-07-29 10:43:24"));}});
+            add(new HashMap<String, Object>(4) {{
+                put("NAME", "lock_timeouts");
+                put("SUBSYSTEM", "lock");
+                put("COUNT", 0);
+                put("TIME_ENABLED", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2021-07-29 10:43:24"));}});
+        }};
 ```
 
