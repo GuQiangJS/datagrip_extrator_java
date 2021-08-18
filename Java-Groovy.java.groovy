@@ -34,7 +34,7 @@ def printJava(level, col, o) {
             break
         case Object[]:
         case Iterable:
-            OUT.append("new ArrayList<HashMap<String, Object>>() {{")
+            OUT.append("new ArrayList<Map<String, Object>>() {{")
             def plain = true
             o.eachWithIndex { item, i ->
                 plain = item == null || item instanceof Number || item instanceof Boolean || item instanceof String
