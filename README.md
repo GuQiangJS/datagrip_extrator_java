@@ -14,7 +14,7 @@ DataGrip适用的数据提取器。可以将所需数据导出为Java的ArrayLis
 导出后的java代码如下
 
 ```java
-        new ArrayList<HashMap<String, Object>>() {{
+        new ArrayList<Map<String, Object>>() {{
             add(new HashMap<String, Object>(4) {{
                 put("NAME", "metadata_table_reference_count");
                 put("SUBSYSTEM", "metadata");
